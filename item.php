@@ -1,3 +1,4 @@
+<?php include 'includes/db.php'; ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -71,7 +72,7 @@
               <img src="images/image1.jpg" alt="Watch for Men" class="img-responsive" title="Watch for Men">
             </div>
             <div class="bottom">
-              <h3 class="item-title"><a href="product.php">Beautiful Watch</a></h3>
+              <h3 class="item-title"><a href="item.php">Beautiful Watch</a></h3>
               <div class="pull-right cutted-price text-muted"><del>$ 500/=</del></div>
               <div class="clearfix"></div>
               <div class="pull-right discounted-price">$ 450/=</div>
@@ -84,7 +85,7 @@
               <img src="images/image1.jpg" alt="Watch for Men" class="img-responsive" title="Watch for Men">
             </div>
             <div class="bottom">
-              <h3 class="item-title"><a href="product.php">Beautiful Watch</a></h3>
+              <h3 class="item-title"><a href="item.php">Beautiful Watch</a></h3>
               <div class="pull-right cutted-price text-muted"><del>$ 500/=</del></div>
               <div class="clearfix"></div>
               <div class="pull-right discounted-price">$ 450/=</div>
@@ -97,7 +98,7 @@
               <img src="images/image1.jpg" alt="Watch for Men" class="img-responsive" title="Watch for Men">
             </div>
             <div class="bottom">
-              <h3 class="item-title"><a href="product.php">Beautiful Watch</a></h3>
+              <h3 class="item-title"><a href="item.php">Beautiful Watch</a></h3>
               <div class="pull-right cutted-price text-muted"><del>$ 500/=</del></div>
               <div class="clearfix"></div>
               <div class="pull-right discounted-price">$ 450/=</div>
@@ -110,7 +111,7 @@
               <img src="images/image1.jpg" alt="Watch for Men" class="img-responsive" title="Watch for Men">
             </div>
             <div class="bottom">
-              <h3 class="item-title"><a href="product.php">Beautiful Watch</a></h3>
+              <h3 class="item-title"><a href="item.php">Beautiful Watch</a></h3>
               <div class="pull-right cutted-price text-muted"><del>$ 500/=</del></div>
               <div class="clearfix"></div>
               <div class="pull-right discounted-price">$ 450/=</div>
