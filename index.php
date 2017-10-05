@@ -12,6 +12,7 @@
         <div class="col-md-3">
           <div class="col-md-12 single-item noPadding">
             <div class="top">
+              <img src="images/image1.jpg" alt="Watch for Men" class="img-responsive" title="Watch for Men">
             </div>
             <div class="bottom">
               <h3 class="item-title"><a href="product.php">Beautiful Watch</a></h3>
