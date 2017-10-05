@@ -1,5 +1,30 @@
+.noPadding {
+  padding: 0;
+}
 .single-item {
+  height: 320px;
+  border: 1px solid black;
+}
+.top {
   background: maroon;
-  height: 300px;
-  color: white;
+  height: 200px;
+}
+
+.bottom {
+  height: 120px;
+}
+.item-title {
+  color: maroon;
+  margin: 0;
+  padding-top: 10px;
+}
+.cutted-price {
+  font-size: 20px;
+  margin-right: 10px;
+}
+.discounted-price {
+  font-size: 20px;
+  margin-right: 10px;
+  color: maroon;
+  font-style: italic;
 }
