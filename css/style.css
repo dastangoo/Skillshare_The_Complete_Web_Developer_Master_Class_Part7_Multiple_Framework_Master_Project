@@ -65,7 +65,7 @@ body {
    font-size: 20px;
    margin-top: 10px;
 }
-.btn {
+#buy_btn {
   height: 60px;
   border-radius: 0;
   font-size: 40px;
@@ -79,4 +79,7 @@ body {
 }
 .list-group .list-group-item:hover {
   background: #e6ffee;
+}
+.form-control {
+  border-radius: 0;
 }
