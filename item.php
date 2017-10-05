@@ -18,24 +18,26 @@
         <ol class="breadcrumb">
           <li><a href="index.php">Home</a></li>
           <li><a href="#">Watches</a></li>
-          <li class="active">Beautiful Watch</li>
+          <li class="active"><?= $_GET['item_title'] ?></li>
         </ol>
       </div>
       <div class="row">
+        <?php
+          if (isset($_GET['item_id'])) {
+            $sql = "SELECT * FROM items WHERE item_id='$_GET[item_id]'";
+            $run = mysqli_query($conn, $sql);
+            while ($rows = mysqli_fetch_assoc($run)) {
+              $item_title = $rows['item_title'];
+              $item_image = $rows['item_image'];
+              $item_desc = $rows['item_description'];
+            }
+          }
+        ?>
         <div class="col-md-8">
-          <h3 class="pp-title">Beautiful Watch</h3>
-          <img src="images/items/item1.jpg" class="pp-img img-responsive" alt="Watch for Men" title="Watch for Men">
+          <h3 class="pp-title"><?= $item_title ?></h3>
+          <img src=<?= $item_image ?> class="pp-img img-responsive" alt="Watch for Men" title="Watch for Men">
           <h4 class="pp-desc-head">Description</h4>
-          <div class="pp-desc-detail">
-            <p>This is a very beautiful watch. It&apos;s purely made on metal. You can by this watch by clicking the buy button.</p>
-            <ul>
-              <li>It's beautiful</li>
-              <li>Made of metal</li>
-              <li>An original and branded quality</li>
-              <li>Free shipping overall the country</li>
-              <li>Pay Securely via <b>CASH on DELIVERY</b> method</li>
-            </ul>
-          </div>
+          <div class="pp-desc-detail"><?= $item_desc ?></div>
         </div>
         <aside class="col-md-4">
           <a href="buy.php" class="btn btn-success btn-block" id="buy_btn">Buy</a>
