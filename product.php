@@ -23,7 +23,7 @@
       <div class="row">
         <div class="col-md-8">
           <h3 class="pp-title">Beautiful Watch</h3>
-          <img src="images/image1.jpg" class="img-responsive" alt="Watch for Men" title="Watch for Men">
+          <img src="images/image1.jpg" class="pp-img img-responsive" alt="Watch for Men" title="Watch for Men">
           <h4 class="pp-desc-head">Description</h4>
           <div class="pp-desc-detail">
             <p>This is a very beautiful watch. It&apos;s purely made on metal. You can by this watch by clicking the buy button.</p>
@@ -42,19 +42,19 @@
           <ul class="list-group">
             <li class="list-group-item">
               <div class="row">
-                <div class="col-md-3"><i class="fa fa-truck fa-2x"></i></div>
+                <div class="col-md-3"><i class="fa fa-truck fa-3x"></i></div>
                 <div class="col-md-9">Delivered within 5 days</div>
               </div>
             </li>
             <li class="list-group-item">
               <div class="row">
-                <div class="col-md-3"><i class="fa fa-refresh fa-2x"></i></div>
+                <div class="col-md-3"><i class="fa fa-refresh fa-3x"></i></div>
                 <div class="col-md-9">Easy return in 7 days</div>
               </div>
             </li>
             <li class="list-group-item">
               <div class="row">
-                <div class="col-md-3"><i class="fa fa-phone fa-2x"></i></div>
+                <div class="col-md-3"><i class="fa fa-phone fa-3x"></i></div>
                 <div class="col-md-9">Call at 123456789</div>
               </div>
             </li>
