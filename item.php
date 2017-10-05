@@ -24,7 +24,7 @@
       <div class="row">
         <div class="col-md-8">
           <h3 class="pp-title">Beautiful Watch</h3>
-          <img src="images/image1.jpg" class="pp-img img-responsive" alt="Watch for Men" title="Watch for Men">
+          <img src="images/items/item1.jpg" class="pp-img img-responsive" alt="Watch for Men" title="Watch for Men">
           <h4 class="pp-desc-head">Description</h4>
           <div class="pp-desc-detail">
             <p>This is a very beautiful watch. It&apos;s purely made on metal. You can by this watch by clicking the buy button.</p>
