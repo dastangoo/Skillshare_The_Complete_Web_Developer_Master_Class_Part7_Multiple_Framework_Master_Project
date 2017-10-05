@@ -4,9 +4,15 @@
     <meta charset="utf-8">
     <title>Product detail</title>
     <?php include 'includes/links.php' ?>
+    <style media="screen">
+      .btn {
+        border-radius: 0;
+      }
+    </style>
   </head>
   <body>
     <?php include 'includes/header.php' ?>
+    <br><br><br><br>
     <div class="container">
       <div class="col-md-12">
         <ol class="breadcrumb">
@@ -30,8 +36,30 @@
           </ul>
         </div>
       </div>
-      <div class="col-md-4"></div>
-      <br>
+      <aside class="col-md-4">
+        <a href="#" class="btn btn-success btn-block">Buy</a>
+        <br>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-3"><i class="fa fa-truck fa-2x"></i></div>
+              <div class="col-md-9">Delivered within 5 days</div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-3"><i class="fa fa-refresh fa-2x"></i></div>
+              <div class="col-md-9">Easy return in 7 days</div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-3"><i class="fa fa-phone fa-2x"></i></div>
+              <div class="col-md-9">Call at 123456789</div>
+            </div>
+          </li>
+        </ul>
+      </aside>
     </div>
     <br><br><br><br><br><br>
     <?php include 'includes/footer.php' ?>

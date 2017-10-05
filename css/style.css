@@ -62,3 +62,18 @@ body {
    font-size: 20px;
    margin-top: 10px;
 }
+.btn {
+  height: 70px;
+  border-radius: 0;
+  font-size: 40px;
+}
+.list-group {}
+.list-group .list-group-item {
+  font-size: 23px;
+  border-right: 0;
+  border-left: 0;
+  padding: 20px 10px 20px 10px;
+}
+.list-group .list-group-item:hover {
+  background: #e6ffee;
+}
