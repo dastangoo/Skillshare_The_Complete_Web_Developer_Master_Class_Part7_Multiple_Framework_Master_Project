@@ -24,6 +24,7 @@
               $run = mysqli_query($conn, $sql);
               while ($rows = mysqli_fetch_assoc($run)) {
                 $item_cat = ucwords($rows['item_cat']);
+                $item_id = $rows['item_id'];
                 echo "
                   <li><a href='category.php?category=$item_cat'>$item_cat</a></li>
                   <li class='active'>$rows[item_title]</li>
@@ -44,7 +45,7 @@
           }
       ?>
         <aside class="col-md-4">
-          <a href="buy.php" class="btn btn-success btn-block" id="buy_btn">Buy</a>
+          <a href="buy.php?chk_item_id=<?php echo $item_id; ?>" class="btn btn-success btn-block" id="buy_btn">Buy</a>
           <br>
           <ul class="list-group">
             <li class="list-group-item">
