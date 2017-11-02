@@ -4,10 +4,20 @@
       <a href="#" class="navbar-brand">Online Shopping</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Men</a></li>
-      <li><a href="#">Women</a></li>
-      <li><a href="#">Kids</a></li>
+      <li><a href="index.php">Home</a></li>
+      <?php
+        $cat_sql = "SELECT * FROM item_cat";
+        $cat_run = mysqli_query($conn, $cat_sql);
+        while ($cat_row = mysqli_fetch_assoc($cat_run)) {
+          $cat_name = ucwords($cat_row['cat_name']);
+          if ($cat_row['cat_slug'] == '') { 
+            $cat_slug = $cat_row['cat_name'];
+          } else {
+            $cat_slug = $cat_row['cat_slug'];
+          }
+          echo "<li><a href='category.php?category=$cat_slug'>$cat_name</a></li>";
+        }
+      ?>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="">Log Out</a></li>
