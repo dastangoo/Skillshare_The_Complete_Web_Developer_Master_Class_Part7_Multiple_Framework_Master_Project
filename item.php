@@ -72,58 +72,29 @@
         <h4>Related Items</h4>
       </div>
       <section class="row">
-        <div class="col-md-3">
-          <div class="col-md-12 single-item noPadding">
-            <div class="top">
-              <img src="images/items/item1.jpg" alt="Watch for Men" class="img-responsive" title="Watch for Men">
-            </div>
-            <div class="bottom">
-              <h3 class="item-title"><a href="item.php">Beautiful Watch</a></h3>
-              <div class="pull-right cutted-price text-muted"><del>$ 500/=</del></div>
-              <div class="clearfix"></div>
-              <div class="pull-right discounted-price">$ 450/=</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="col-md-12 single-item noPadding">
-            <div class="top">
-              <img src="images/items/item1.jpg" alt="Watch for Men" class="img-responsive" title="Watch for Men">
-            </div>
-            <div class="bottom">
-              <h3 class="item-title"><a href="item.php">Beautiful Watch</a></h3>
-              <div class="pull-right cutted-price text-muted"><del>$ 500/=</del></div>
-              <div class="clearfix"></div>
-              <div class="pull-right discounted-price">$ 450/=</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="col-md-12 single-item noPadding">
-            <div class="top">
-              <img src="images/items/item1.jpg" alt="Watch for Men" class="img-responsive" title="Watch for Men">
-            </div>
-            <div class="bottom">
-              <h3 class="item-title"><a href="item.php">Beautiful Watch</a></h3>
-              <div class="pull-right cutted-price text-muted"><del>$ 500/=</del></div>
-              <div class="clearfix"></div>
-              <div class="pull-right discounted-price">$ 450/=</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="col-md-12 single-item noPadding">
-            <div class="top">
-              <img src="images/items/item1.jpg" alt="Watch for Men" class="img-responsive" title="Watch for Men">
-            </div>
-            <div class="bottom">
-              <h3 class="item-title"><a href="item.php">Beautiful Watch</a></h3>
-              <div class="pull-right cutted-price text-muted"><del>$ 500/=</del></div>
-              <div class="clearfix"></div>
-              <div class="pull-right discounted-price">$ 450/=</div>
-            </div>
-          </div>
-        </div>
+        <?php 
+          $rel_sql = "SELECT * FROM items ORDER BY rand() LIMIT 4";
+          $rel_run = mysqli_query($conn, $rel_sql);
+          while ($rel_rows = mysqli_fetch_assoc($rel_run)) {
+            $discounted_price = $rel_rows['item_price'] - $rel_rows['item_discount'];
+            $item_title = str_replace(' ', '-', $rel_rows['item_title']);
+            echo "
+              <div class='col-md-3'>
+                <div class='col-md-12 single-item noPadding'>
+                  <div class='top'>
+                    <img src='$rel_rows[item_image]' alt='Watch for Men' class='img-responsive' title='Watch for Men'>
+                  </div>
+                  <div class='bottom'>
+                    <h3 class='item-title'><a href='item.php?item_title=$item_title&item_id=$rel_rows[item_id]'>$rel_rows[item_title]</a></h3>
+                    <div class='pull-right cutted-price text-muted'><del>$ $rel_rows[item_price]/=</del></div>
+                    <div class='clearfix'></div>
+                    <div class='pull-right discounted-price'>$ $discounted_price/=</div>
+                  </div>
+                </div>
+              </div>              
+            ";
+          }
+        ?>
       </section>
     <?php } ?>
     </div>
