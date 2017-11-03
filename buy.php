@@ -10,9 +10,13 @@
         $_SESSION['ref']= $date. '_' . $rand_num;
       }
       
-      $chk_sql = "INSERT INTO checkout (chk_item, chk_ref, chk_timing) VALUES ('$_GET[chk_item_id]', '$_SESSION[ref]', '$date')";
-      $chk_run = mysqli_query($conn, $chk_sql);
-  }
+      $chk_sql = "INSERT INTO checkout (chk_item, chk_ref, chk_timing, chk_qty) VALUES ('$_GET[chk_item_id]', '$_SESSION[ref]', '$date', 1)";
+      if (mysqli_query($conn, $chk_sql)){
+        ?><script>
+          window.location = "buy.php";
+        </script><?php
+      }
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -127,4 +131,3 @@
     <?php include 'includes/footer.php' ?>
   </body>
 </html>
-¡

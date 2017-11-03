@@ -40,7 +40,7 @@
           <td>$chk_sel_rows[item_title]</td>"
           ?>
           <td>
-            <input type='number' style='width: 45px;' onblur="up_chk_qty(this.value, '<?php echo $chk_sel_rows['chk_id']; ?>');" value='<?php echo $chk_sel_rows['chk_qty']; ?>'/>
+            <input type='number' style='width: 45px;' min="1" onblur="up_chk_qty(this.value, '<?php echo $chk_sel_rows['chk_id']; ?>');" value='<?php echo $chk_sel_rows['chk_qty']; ?>'/>
           </td>
           <td><button class='btn btn-danger btn-sm' onclick="del_func(<?php echo $chk_sel_rows['chk_id'];?>);">Delete</button></td>
           <?php
