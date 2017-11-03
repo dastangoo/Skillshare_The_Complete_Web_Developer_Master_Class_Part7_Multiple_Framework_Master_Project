@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>Online Shopping | Admin Panel</title>
     <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/admin-style.css">
     <script src="../js/jquery.js"></script>
     <script src="../js/bootstrap.js"></script>
     
