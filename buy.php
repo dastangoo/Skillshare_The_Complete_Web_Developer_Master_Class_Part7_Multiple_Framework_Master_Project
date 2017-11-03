@@ -20,8 +20,22 @@
     <meta charset="utf-8">
     <title>Shopping Cart</title>
     <?php include 'includes/links.php' ?>
+    <script>
+      function ajax_func() {
+          xmlhttp = new XMLHttpRequest();
+          xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+              document.getElementById('get_processed_data').innerHTML = xmlhttp.responseText;
+            }
+          }
+          
+          
+          xmlhttp.open('GET', 'buy_process.php', true);
+          xmlhttp.send();
+      }
+    </script>
   </head>
-  <body>
+  <body onload="ajax_func();">
     <?php include 'includes/header.php' ?>
     <div class="container">
       <div class="page-header">
@@ -94,27 +108,10 @@
                 <th class="text-right">Total</th>
               </tr>
             </thead>
-            <tbody>
-              <?php 
-                // $chk_sel_sql = "SELECT * FROM checkout WHERE chk_ref = '$_SESSION[ref]'";
-                $chk_sel_sql = "SELECT * FROM checkout c JOIN items i ON c.chk_item = i.item_id WHERE c.chk_ref = '$_SESSION[ref]'";
-                $chk_sel_run = mysqli_query($conn, $chk_sel_sql);
-                $c = 1;
-                while ($chk_sel_rows = mysqli_fetch_assoc($chk_sel_run)) {
-                  $discounted_price = $chk_sel_rows['item_price'] - $chk_sel_rows['item_discount'];
-                  echo "
-                    <tr>
-                      <td>$c</td>
-                      <td>$chk_sel_rows[item_title]</td>
-                      <td>1</td>
-                      <td><button class='btn btn-danger btn-sm'>Delete</button></td>
-                      <td class='text-right'><b>$discounted_price/=</b></td>
-                      <td class='text-right'><b>100/=</b></td>
-                    </tr>
-                  ";
-                  $c++;
-                }
-              ?>
+            <tbody id="get_processed_data">
+              
+              <!-- The Buy Proces Data -->
+              
             </tbody>
           </table>
           <table class="table">
