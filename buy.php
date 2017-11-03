@@ -117,44 +117,9 @@
       <div class="panel panel-default">
         <div class="panel-heading">Order Detail</div>
         <div class="panel-body">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>S.no</th>
-                <th>Item</th>
-                <th>qty</th>
-                <th width="5%">Delete</th>
-                <th class="text-right">Price</th>
-                <th class="text-right">Total</th>
-              </tr>
-            </thead>
-            <tbody id="get_processed_data">
-              
-              <!-- The Buy Proces Data -->
-              
-            </tbody>
-          </table>
-          <table class="table">
-            <thead>
-              <tr>
-                <th colspan="2" class="text-center">Order Summary</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Subtotal</td>
-                <td class="text-right"><b>700/=</b></td>
-              </tr>
-              <tr>
-                <td>Delivery Charges</td>
-                <td class="text-right"><b>Free</b></td>
-              </tr>
-              <tr>
-                <td>Grand Total</td>
-                <td class="text-right"><b>700/=</b></td>
-              </tr>
-            </tbody>
-          </table>
+          <div id="get_processed_data">
+            
+          </div>
         </div>
       </div>
     </div>
