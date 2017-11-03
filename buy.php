@@ -33,6 +33,16 @@
           xmlhttp.open('GET', 'buy_process.php', true);
           xmlhttp.send();
       }
+      function del_func(chk_id) {
+        xmlhttp.onreadystatechange = function () {
+          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById('get_processed_data').innerHTML = xmlhttp.responseText;
+          }
+        }
+        
+        xmlhttp.open('GET', 'buy_process.php?chk_del_id=' + chk_id, true);
+        xmlhttp.send();
+      }
     </script>
   </head>
   <body onload="ajax_func();">
