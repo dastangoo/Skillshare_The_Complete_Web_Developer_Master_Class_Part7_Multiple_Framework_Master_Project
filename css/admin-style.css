@@ -3,3 +3,7 @@
   border-bottom: 4px solid black;
   color: white;
 }
+.btn {
+  background: red;
+  border-radius: 0;
+}
