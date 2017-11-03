@@ -17,6 +17,15 @@
         </script><?php
       }
     }
+    if ($_POST['order_submit']) {
+      $name = mysqli_real_escape_string($conn, strip_tags($_POST['name']));
+      $email = mysqli_real_escape_string($conn, strip_tags($_POST['email']));
+      $contact = mysqli_real_escape_string($conn, strip_tags($_POST['contact']));
+      $state = mysqli_real_escape_string($conn, strip_tags($_POST['state']));
+      $delivery_address = mysqli_real_escape_string($conn, strip_tags($_POST['delivery_address']));
+      $order_ins_sql = "INSERT INTO orders (order_name, order_email, order_contact, order_state, order_delivery_address, order_checkout_ref, order_total) VALUES ('$name', '$email', '$contact', '$state', '$delivery_address', '$_SESSION[ref]','$_SESSION[grand_total]')";
+      mysqli_query($conn, $order_ins_sql);
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -74,22 +83,22 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
               </div>
               <div class="modal-body">
-                <form>
+                <form method="post">
                   <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" placeholder="Full Name" id="name">
+                    <input type="text" class="form-control" placeholder="Full Name" id="name" name="name" required>
                   </div>
                   <div class="form-group">
                     <label for="email">Email Address</label>
-                    <input type="email" class="form-control" placeholder="Email" id="email">
+                    <input type="email" class="form-control" placeholder="Email" id="email" name="email" required>
                   </div>
                   <div class="form-group">
                     <label for="contact">Contact Number</label>
-                    <input type="text" class="form-control" placeholder="Contact Number" id="contact">
+                    <input type="text" class="form-control" placeholder="Contact Number" id="contact" name="contact" required>
                   </div>
                   <div class="form-group">
-                    <label for="contact">City</label>
-                    <input list="states" class="form-control">
+                    <label for="state">State</label>
+                    <input list="states" class="form-control" id="state" name="state" required>
                     <datalist id="states">
                       <option>Washington</option>
                       <option>New York</option>
@@ -102,10 +111,10 @@
                   </div>
                   <div class="form-group">
                     <label for="address">Delivery Address</label>
-                    <textarea id="address" class="form-control"></textarea>
+                    <textarea id="address" class="form-control" name="delivery_address" required></textarea>
                   </div>
                   <div class="form-group">
-                    <input type="submit" class="btn btn-danger form-control">
+                    <input type="submit" class="btn btn-danger form-control" name="order_submit">
                   </div>
 
                 </form>

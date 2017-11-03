@@ -51,7 +51,7 @@
     ";
     $c++;
   }
-  $grand_total = $total + $delivery_charges;
+  $_SESSION['grand_total'] = $total + $delivery_charges;
   echo "
   </tbody>
 </table>
@@ -72,7 +72,7 @@
     </tr>
     <tr>
       <td>Grand Total</td>
-      <td class='text-right'><b>$grand_total/=</b></td>
+      <td class='text-right'><b>$_SESSION[grand_total]/=</b></td>
     </tr>
   </tbody>
 </table>
