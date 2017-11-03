@@ -8,7 +8,7 @@
   </head>
   <body>
     <?php include 'includes/header.php'; ?>
-    <div class="container">
+    <div class="container"> 
       <div class="row">
         <?php
           $sql = "SELECT * FROM items";
