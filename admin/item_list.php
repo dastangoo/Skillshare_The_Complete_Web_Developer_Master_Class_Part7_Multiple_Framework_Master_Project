@@ -1,4 +1,36 @@
-<?php include '../includes/db.php' ?>
+<?php include '../includes/db.php';  
+  if (isset($_POST['item_submit'])) {
+    
+    mysqli_real_escape_string($conn, strip_tags($_POST['item_name']));
+    mysqli_real_escape_string($conn, strip_tags($_POST['item_description']));
+    mysqli_real_escape_string($conn, strip_tags($_POST['item_category']));
+    mysqli_real_escape_string($conn, strip_tags($_POST['item_quantity']));
+    mysqli_real_escape_string($conn, strip_tas($_POST['item_cost']));
+    mysqli_real_escape_string($conn, strip_tags($_POST['item_price']));
+    mysqli_real_escape_string($conn, strip_tags($_POST['item_discount']));
+    mysqli_real_escape_string($conn, strip_tags($_POST['item_delivery']));
+    
+    if (isset($_FILES['item_image']['name'])) {
+      $file_name = $_FILES['item_image']['name'];
+      $path_address = "../images/items/$file_name";
+      $img_confirm = 1;
+      $file_type = pathinfo($file_name);
+      if ($_FILES['item_image']['size'] > 200000) {
+        $img_confirm = 0;
+      }
+      if ($file_type != 'jpg' && $file_type != 'png' && $file_type != 'gif') {
+        $img_confirm = 0;
+      }
+      if ($img_confirm == 1) {
+        if (move_uploaded_file($_FILES['item_image']['tmp_name'], $path_address)) {
+          $item_ins_sql = "INSERT INTO items () VALUES ()";
+        }
+      }
+    }
+    $ins_sql = "INSERT INTO items (item_image, item_title, item_description, item_cat, item_qty, item_cost, item_price, item_discount, item_delivery) VALUES ('$_POST[item_image]', '$_POST[item_name]', '$_POST[item_description]', '$_POST[item_category]', '$_POST[item_quantity]', '$_POST[item_cost]', '$_POST[item_price])','$_POST[item_discount]', '$_POST[item_delivery]'";
+    mysqli_query($conn, $ins_sql);
+  }
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -38,43 +70,62 @@
               <h4 class="modal-title">Add New Item</h4>
             </div>
             <div class="modal-body">
-              <form>
+              <form method="post" enctype="multipart/form-data">
                 <div class="form-group">
                   <label for="">Item Image</label>
-                  <input type="file" name="" value="" class="form-control">
+                  <input type="file" name="item_image " value="" class="form-control">
                 </div>
                 <div class="form-group">
                   <label for="">Item Name</label>
-                  <input type="text" class="form-control" id="" placeholder="">
+                  <input type="text" class="form-control" id="" placeholder="" name="item_name">
                 </div>
                 <div class="form-group">
                   <label for="">Item Description</label>
-                  <textarea name="name" rows="6" cols="80" class="form-control"></textarea>
+                  <textarea rows="6" cols="80" class="form-control" name="item_description"></textarea>
                 </div>
                 <div class="form-group">
                   <label for="">Item Catgory</label>
-                  <select class="" name="" class="form-control">
+                  <select class="" name="item_category" class="form-control">
                     <option value="">Select a Category</option>
+                    <?php 
+                      $cat_sql = "SELECT * FROM item_cat";
+                      $cat_run = mysqli_query($conn, $cat_sql);
+                      while ($cat_rows = mysqli_fetch_assoc($cat_run)) {
+                        $cat_name = ucwords($cat_rows['cat_name']);
+                        if ($cat_rows['cat_slug'] == '') {
+                          $cat_slug = $cat_rows['cat_name'];
+                        } else {
+                          $cat_slug = $cat_rows['cat_slug'];
+                        }
+                        echo "
+                          <option value='$cat_slug'>$cat_name</option>
+                        ";
+                      }
+                    ?>
                   </select>
                 </div>
                 <div class="form-group">
                   <label for="">Item Quantity</label>
-                  <input type="number" class="form-control" id="" placeholder="" min="1">
+                  <input type="number" class="form-control" id="" placeholder="" min="1" name="item_quantity">
                 </div>
                 <div class="form-group">
                   <label for="">Item Cost</label>
-                  <input type="number" class="form-control" id="" placeholder="" min="1">
+                  <input type="number" class="form-control" id="" placeholder="" min="1" name="item_cost">
                 </div>
                 <div class="form-group">
                   <label for="">Item Price</label>
-                  <input type="number" class="form-control" id="" placeholder="" min="1">
+                  <input type="number" class="form-control" id="" placeholder="" min="1" name="item_price">
+                </div>
+                <div class="form-group">
+                  <label for="">Item Discount</label>
+                  <input type="text" class="form-control" id="" placeholder="" name="item_discount">
                 </div>
                 <div class="form-group">
                   <label for="">Item Delivery</label>
-                  <input type="number" class="form-control" id="" placeholder="" min="1">
+                  <input type="number" class="form-control" id="" placeholder="" min="1" name="item_delivery">
                 </div>
                 <div class="form-group">
-                  <input type="submit" class="btn btn-primary btn-block" id="" placeholder="">
+                  <input type="submit" class="btn btn-primary btn-block" id="" placeholder="" name="item_submit">
                 </div>
               </form>
             </div>
