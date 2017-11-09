@@ -53,7 +53,16 @@
             <td>$rows[order_contact]</td>
             <td>$rows[order_state]</td>
             <td>$rows[order_delivery_address]</td>
-            <td>$rows[order_checkout_ref]</td>
+            <td><button class='btn btn-info btn-block btn-sm' data-toggle='modal' data-target='#order_chk_modal'>$rows[order_checkout_ref]</button></td>
+            <div class='modal fade' id='order_chk_modal'>
+              <div class='modal-dialog'>
+                <div class='modal-content'>
+                  <div class='modal-header'>Header</div>
+                  <div class='modal-body'>Body</div>
+                  <div class='modal-footer'>Footer</div>
+                </div>
+              </div>
+            </div>
             <td class='text-right'>$rows[order_total]</td>"; ?>
             <td class='text-center'><button class='btn <?php echo $status_btn_class ?> btn-block btn-sm' onclick="order_status(<?php echo $rows['order_status'] . ', ' . $rows['order_id'] ?>);"><?php echo $status_btn_value ?></button></td>
             <td class="text-center"><button class="btn <?php echo $return_btn_class ?> btn-block btn-sm" onclick="return_status(<?php echo $rows['order_return_status'] . ', ' . $rows['order_id'] ?>);"><?php echo $return_btn_value ?></button></td>
