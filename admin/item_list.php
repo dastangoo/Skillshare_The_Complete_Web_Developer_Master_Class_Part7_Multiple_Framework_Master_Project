@@ -44,8 +44,6 @@
     <link rel="stylesheet" href="../css/admin-style.css">
     <!-- <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
     <script>tinymce.init({ selector:'textarea' });</script> -->
-    <style media="screen">
-    </style>
     <script src="../js/jquery.js"></script>
     <script src="../js/bootstrap.js"></script>    
     <script>

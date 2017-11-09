@@ -3,7 +3,7 @@
     <ul class="nav navbar-nav">
       <li><a href="index.php">Dashboard</a></li>
       <li><a href="item_list.php">Items</a></li>
-      <li><a href="#">Others</a></li>
+      <li><a href="#">Orders</a></li>
       <li><a href="#">Others</a></li>
       <li><a href="#">Others</a></li>
     </ul>        

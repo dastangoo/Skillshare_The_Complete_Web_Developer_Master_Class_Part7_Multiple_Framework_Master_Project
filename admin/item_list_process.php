@@ -6,7 +6,7 @@
   
   if (isset($_REQUEST['up_item_id'])) {
     
-    $item_name = mysqli_real_escape_string($conn, strip_tags($_REQUEST['item_title']));
+    $item_title = mysqli_real_escape_string($conn, strip_tags($_REQUEST['item_title']));
     $item_description = mysqli_real_escape_string($conn, $_REQUEST['item_description']);
     $item_category = mysqli_real_escape_string($conn, strip_tags($_REQUEST['item_category']));
     $item_quantity = mysqli_real_escape_string($conn, strip_tags($_REQUEST['item_quantity']));
