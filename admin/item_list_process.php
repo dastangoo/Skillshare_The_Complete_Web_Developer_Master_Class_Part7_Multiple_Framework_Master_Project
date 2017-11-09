@@ -1,4 +1,9 @@
-<?php include '../includes/db.php' ?>
+<?php include '../includes/db.php';
+  if (isset($_REQUEST['del_item_id'])) {
+    $del_sql = "DELETE FROM items WHERE item_id = '$_REQUEST[del_item_id]'";
+    mysqli_query($conn, $del_sql);
+  }
+?>
 <table class="table table-bordered table-striped table-hover">
   <thead>
     <tr class="item-head">
@@ -38,8 +43,9 @@
           <div class='dropdown'>
             <button class='btn btn-red btn-danger dropdown-toggle' data-toggle='dropdown'>Actions<span class='caret'></span></button>
             <ul class='dropdown-menu dropdown-menu-right'>
-              <li><a href='#'>Edit</a></li>
-              <li><a href='#'>Delete</a></li>
+              <li><a href='#'>Edit</a></li>";?>
+              <li><a href="javascript:;" onclick="del_item(<?php echo $sel_rows['item_id']; ?>);">Delete</a></li>
+              <?php  echo "
             </ul>
           </div>
           </td>

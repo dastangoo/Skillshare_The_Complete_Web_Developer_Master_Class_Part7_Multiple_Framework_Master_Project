@@ -59,6 +59,10 @@
         xmlhttp.open('GET', 'item_list_process.php', true);
         xmlhttp.send();
       }
+      function del_item(item_id) {
+        xmlhttp.open('GET', 'item_list_process.php?del_item_id=' + item_id, true);
+        xmlhttp.send();
+      }
     </script>
   </head>
   <body onload="get_item_list_data();">
