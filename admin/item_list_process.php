@@ -4,22 +4,22 @@
     mysqli_query($conn, $del_sql);
   }
   
-  if (isset($_POST['up_item_submit'])) {
+  if (isset($_REQUEST['up_item_id'])) {
     
-    $item_name = mysqli_real_escape_string($conn, strip_tags($_POST['item_name']));
-    $item_description = mysqli_real_escape_string($conn, $_POST['item_description']);
-    $item_category = mysqli_real_escape_string($conn, strip_tags($_POST['item_category']));
-    $item_quantity = mysqli_real_escape_string($conn, strip_tags($_POST['item_quantity']));
-    $item_cost = mysqli_real_escape_string($conn, strip_tags($_POST['item_cost']));
-    $item_price = mysqli_real_escape_string($conn, strip_tags($_POST['item_price']));
-    $item_discount = mysqli_real_escape_string($conn, strip_tags($_POST['item_discount']));
-    $item_delivery = mysqli_real_escape_string($conn, strip_tags($_POST['item_delivery']));
-    $item_id = $_POST['up_item_id'];
+    $item_name = mysqli_real_escape_string($conn, strip_tags($_REQUEST['item_title']));
+    $item_description = mysqli_real_escape_string($conn, $_REQUEST['item_description']);
+    $item_category = mysqli_real_escape_string($conn, strip_tags($_REQUEST['item_category']));
+    $item_quantity = mysqli_real_escape_string($conn, strip_tags($_REQUEST['item_quantity']));
+    $item_cost = mysqli_real_escape_string($conn, strip_tags($_REQUEST['item_cost']));
+    $item_price = mysqli_real_escape_string($conn, strip_tags($_REQUEST['item_price']));
+    $item_discount = mysqli_real_escape_string($conn, strip_tags($_REQUEST['item_discount']));
+    $item_delivery = mysqli_real_escape_string($conn, strip_tags($_REQUEST['item_delivery']));
+    $item_id = $_REQUEST['up_item_id'];
 
-    $item_ins_sql = "INSERT INTO items (item_title, item_description, item_cat, item_qty, item_cost, item_price, item_discount, item_delivery) VALUES ( '$item_name', '$item_description', '$item_category', '$item_quantity', '$item_cost', '$item_price', '$item_discount', '$item_delivery')";
+    // $item_ins_sql = "INSERT INTO items (item_title, item_description, item_cat, item_qty, item_cost, item_price, item_discount, item_delivery) VALUES ( '$item_name', '$item_description', '$item_category', '$item_quantity', '$item_cost', '$item_price', '$item_discount', '$item_delivery')";
     
     $item_up_sql = "UPDATE items SET item_title = '$item_title', item_description='$item_description', item_cat='$item_category', item_qty='$item_quantity', item_cost='$item_cost', item_price='$item_price', item_discount='$item_discount', item_discount='$item_delivery' WHERE item_id='$item_id'";
-    mysqli_query($conn, $item_ins_sql);
+    mysqli_query($conn, $item_up_sql);
   }
 
 ?>
@@ -129,11 +129,11 @@
                       </div>
                       <div class='form-group'>
                         <label for=''>Item Delivery</label>
-                        <button class='form-control' value='$sel_rows[item_delivery]' min='1' id='item_delivery'>Submit</button>
+                        <input type='text' class='form-control' value='$sel_rows[item_delivery]' min='1' id='item_delivery'>
                       </div>
                       <div class='form-group'>
-                        <input type='hidden' id='up_item_id'/>";?>
-                        <input type='submit' class='btn btn-primary btn-block' onclick="edit_item();">                        
+                        <input type='hidden' id='up_item_id' value='$sel_rows[item_id]'/>";?>
+                        <button class='btn btn-primary btn-block' onclick="edit_item();">Submit</button>                     
                       </div>
                     </div>
                   </div>

@@ -60,12 +60,28 @@
         xmlhttp.send();
       }
       function del_item(item_id) {
+        xmlhttp.onreadystatechange = function() {
+          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById('get_item_list_data').innerHTML = xmlhttp.responseText;
+          }
+        }
         xmlhttp.open('GET', 'item_list_process.php?del_item_id=' + item_id, true);
         xmlhttp.send();
       }
       function edit_item() {
+        
+        $item_id = document.getElementById('up_item_id').value;
         $item_title = document.getElementById('item_title').value;
-        alert($item_title);
+        $item_description = document.getElementById('item_description').value;
+        $item_category = document.getElementById('item_category').value;
+        $item_quantity = document.getElementById('item_quantity').value;
+        $item_cost = document.getElementById('item_cost').value;
+        $item_price = document.getElementById('item_price').value;
+        $item_discount = document.getElementById('item_discount').value;
+        $item_delivery = document.getElementById('item_delivery').value;
+          
+        xmlhttp.open('GET', 'item_list_process.php?up_item_id=' + $item_id + '&item_title=' + item_title + '&item_description=' + item_description + '&item_category=' + item_category + '&item_quantity=' + $item_quantity + '&item_cost=' + $item_cost + '&item_price=' + $item_price + '&item_discount=' + $item_discount + '&item_delivery=' + $item_delivery , true);
+        xmlhttp.send();
       }
     </script>
   </head>
