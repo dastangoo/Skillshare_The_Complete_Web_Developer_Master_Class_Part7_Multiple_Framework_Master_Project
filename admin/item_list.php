@@ -63,6 +63,10 @@
         xmlhttp.open('GET', 'item_list_process.php?del_item_id=' + item_id, true);
         xmlhttp.send();
       }
+      function edit_item() {
+        $item_title = document.getElementById('item_title').value;
+        alert($item_title);
+      }
     </script>
   </head>
   <body onload="get_item_list_data();">

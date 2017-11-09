@@ -3,6 +3,25 @@
     $del_sql = "DELETE FROM items WHERE item_id = '$_REQUEST[del_item_id]'";
     mysqli_query($conn, $del_sql);
   }
+  
+  if (isset($_POST['up_item_submit'])) {
+    
+    $item_name = mysqli_real_escape_string($conn, strip_tags($_POST['item_name']));
+    $item_description = mysqli_real_escape_string($conn, $_POST['item_description']);
+    $item_category = mysqli_real_escape_string($conn, strip_tags($_POST['item_category']));
+    $item_quantity = mysqli_real_escape_string($conn, strip_tags($_POST['item_quantity']));
+    $item_cost = mysqli_real_escape_string($conn, strip_tags($_POST['item_cost']));
+    $item_price = mysqli_real_escape_string($conn, strip_tags($_POST['item_price']));
+    $item_discount = mysqli_real_escape_string($conn, strip_tags($_POST['item_discount']));
+    $item_delivery = mysqli_real_escape_string($conn, strip_tags($_POST['item_delivery']));
+    $item_id = $_POST['up_item_id'];
+
+    $item_ins_sql = "INSERT INTO items (item_title, item_description, item_cat, item_qty, item_cost, item_price, item_discount, item_delivery) VALUES ( '$item_name', '$item_description', '$item_category', '$item_quantity', '$item_cost', '$item_price', '$item_discount', '$item_delivery')";
+    
+    $item_up_sql = "UPDATE items SET item_title = '$item_title', item_description='$item_description', item_cat='$item_category', item_qty='$item_quantity', item_cost='$item_cost', item_price='$item_price', item_discount='$item_discount', item_discount='$item_delivery' WHERE item_id='$item_id'";
+    mysqli_query($conn, $item_ins_sql);
+  }
+
 ?>
 <table class="table table-bordered table-striped table-hover">
   <thead>
@@ -43,14 +62,90 @@
           <div class='dropdown'>
             <button class='btn btn-red btn-danger dropdown-toggle' data-toggle='dropdown'>Actions<span class='caret'></span></button>
             <ul class='dropdown-menu dropdown-menu-right'>
-              <li><a href='#'>Edit</a></li>";?>
+              <li>
+                <a href='#edit_modal' data-toggle='modal'>Edit</a>
+              </li>";?>
               <li><a href="javascript:;" onclick="del_item(<?php echo $sel_rows['item_id']; ?>);">Delete</a></li>
               <?php  echo "
             </ul>
+            <div class='modal fade' id='edit_modal'>
+              <div class='modal-dialog'>
+                <div class='modal-content'>
+                  <div class='modal-header'>
+                    <button type='button' name='button' class='close' data-dismiss='modal'>&times;</button>
+                    <h4 class='modal-title'>Edit Item</h4>
+                  </div>
+                  <div class='modal-body'>
+                    <div id=form1>
+                      <div class='form-group'>
+                        <label for=''>Item Name</label>
+                        <input type='text' class='form-control' value='$sel_rows[item_title]' id='item_title' required>
+                      </div>
+                      <div class='form-group'>
+                        <label for=''>Item Description</label>
+                        <textarea rows='6' cols='80' class='form-control' id='item_description' value='$sel_rows[item_description]' required></textarea>
+                      </div>
+                      <div class='form-group'>
+                        <label for=''>Item Catgory</label>
+                        <select class='' id='item_category' class='form-control' required>
+                          <option value=''>Select a Category</option>";
+                            $cat_sql = 'SELECT * FROM item_cat';
+                            $cat_run = mysqli_query($conn, $cat_sql);
+                            while ($cat_rows = mysqli_fetch_assoc($cat_run)) {
+                              $cat_name = ucwords($cat_rows['cat_name']);
+                              if ($cat_rows['cat_slug'] == '') {
+                                $cat_slug = $cat_rows['cat_name'];
+                              } else {
+                                $cat_slug = $cat_rows['cat_slug'];
+                              }
+                              if($cat_slug = $sel_rows['item_cat']) {
+                                echo "
+                                  <option selected value='$cat_slug'>$cat_name</option>
+                                ";                                
+                              } else {
+                                echo "
+                                  <option value='$cat_slug'>$cat_name</option>
+                                ";
+                              }
+                            }
+                          echo "
+                        </select>
+                      </div>
+                      <div class='form-group'>
+                        <label for=''>Item Quantity</label>
+                        <input type='number' class='form-control' value='$sel_rows[item_qty]' min='1' id='item_quantity' required>
+                      </div>
+                      <div class='form-group'>
+                        <label for=''>Item Cost</label>
+                        <input type='number' class='form-control' value='$sel_rows[item_cost]' min='1' id='item_cost' required>
+                      </div>
+                      <div class='form-group'>
+                        <label for=''>Item Price</label>
+                        <input type='number' class='form-control' value='$sel_rows[item_price]' min='1' id='item_price' required>
+                      </div>
+                      <div class='form-group'>
+                        <label for=''>Item Discount</label>
+                        <input type='text' class='form-control' value='$sel_rows[item_discount]' id='item_discount' required>
+                      </div>
+                      <div class='form-group'>
+                        <label for=''>Item Delivery</label>
+                        <button class='form-control' value='$sel_rows[item_delivery]' min='1' id='item_delivery'>Submit</button>
+                      </div>
+                      <div class='form-group'>
+                        <input type='hidden' id='up_item_id'/>";?>
+                        <input type='submit' class='btn btn-primary btn-block' onclick="edit_item();">                        
+                      </div>
+                    </div>
+                  </div>
+                  <div class='modal-footer'>
+                    <button type='button' name='button' class='btn btn-danger' data-dismiss='modal'>Close</button>
+                  </div>
+                </div>
+            </div>
           </div>
           </td>
-        </tr>                
-        ";
+        </tr>           
+        <?php       
         $c++;
       }
     ?>
