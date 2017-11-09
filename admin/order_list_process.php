@@ -3,6 +3,11 @@
     $up_sql = "UPDATE orders SET order_status='$_REQUEST[order_status]' WHERE order_id = '$_REQUEST[order_id]'";
     mysqli_query($conn, $up_sql);
   }
+  if (isset($_REQUEST['order_return_status'])) {
+    $up_sql = "UPDATE orders SET order_return_status='$_REQUEST[order_return_status]' WHERE order_id = '$_REQUEST[order_id]'";
+    mysqli_query($conn, $up_sql);
+  }
+  
 ?>
 <table class="table table-bordered table-striped table-hover">
   <thead class="item-head">
@@ -16,6 +21,7 @@
       <th>Order Ref</th>
       <th class="text-right">Total Payment</th>
       <th>Order Status</th>
+      <th>Return Status</th>
     </tr>
   </thead>
   <tbody>
@@ -25,12 +31,20 @@
       $c = 1;
       while ($rows = mysqli_fetch_assoc($run)) {
         if ($rows['order_status'] == 0) {
-          $btn_class = 'btn-warning';
-          $btn_value = 'Pending';
+          $status_btn_class = 'btn-warning';
+          $status_btn_value = 'Pending';
         } else {
-          $btn_class = 'btn-success';
-          $btn_value = 'Sent';
+          $status_btn_class = 'btn-success';
+          $status_btn_value = 'Sent';
         }
+        if ($rows['order_return_status'] == 0) {
+          $return_btn_class = 'btn-danger';
+          $return_btn_value = 'Returned';
+        } else {
+          $return_btn_class = 'btn-primary';
+          $return_btn_value = 'No Return';
+        }
+
         echo "
           <tr>
             <td>$c</td>
@@ -41,7 +55,8 @@
             <td>$rows[order_delivery_address]</td>
             <td>$rows[order_checkout_ref]</td>
             <td class='text-right'>$rows[order_total]</td>"; ?>
-            <td class='text-center'><button class='btn <?php echo $btn_class ?> btn-block btn-sm' onclick="order_status(<?php echo $rows['order_status'] ?>, <?php echo $rows['order_id'] ?>);"><?php echo $btn_value ?></button></td>
+            <td class='text-center'><button class='btn <?php echo $status_btn_class ?> btn-block btn-sm' onclick="order_status(<?php echo $rows['order_status'] . ', ' . $rows['order_id'] ?>);"><?php echo $status_btn_value ?></button></td>
+            <td class="text-center"><button class="btn <?php echo $return_btn_class ?> btn-block btn-sm" onclick="return_status(<?php echo $rows['order_return_status'] . ', ' . $rows['order_id'] ?>);"><?php echo $return_btn_value ?></button></td>
           </tr>        
           <?php 
           $c++;
